@@ -1,5 +1,16 @@
 version: "3"
 services:
+  web:
+    container_name: cpsi_web
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./web:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
   server:
     container_name: cpsi_server
     build:
