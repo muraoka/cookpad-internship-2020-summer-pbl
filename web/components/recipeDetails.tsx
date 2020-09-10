@@ -6,8 +6,9 @@ type Props = { recipe: Recipe };
 const RecipeDetails: React.FC<Props> = (props) => {
   return (
     <div className="wrap">
-      <div>
+      <div className="img">
         <img src={props.recipe.img_url} />
+        <p>{props.recipe.time}分</p>
       </div>
       <div className="texts">
         <p>{props.recipe.title}</p>
@@ -33,16 +34,29 @@ const RecipeDetails: React.FC<Props> = (props) => {
           display: flex;
           flex-direction: column;
         }
-        img {
-          max-width: 100px;
+        .img {
+          position: relative;
         }
-        p {
-          font-size: 16px;
+        .img > p {
+          font-size: 20px;
+          position: absolute;
+          top: 0px;
+          left: -10px;
+          padding: 8px;
+          background: #fff;
+          border: 3px solid;
+          border-radius: 100px;
+        }
+        img {
+          max-width: 160px;
+        }
+        .texts > p {
+          font-size: 20px;
           font-weight: bold;
           margin: 10px;
         }
         a {
-          padding: 6px;
+          padding: 10px;
           border-radius: 20px;
           color: #ff9933;
           border: 2px solid #ff9933;

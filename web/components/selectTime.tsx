@@ -52,7 +52,7 @@ const SelectTime: React.FC<Props> = (props) => {
         }
         p {
           font-size: 30px;
-          margin-buttom: 20px;
+          margin-bottom: 20px;
         }
         .timers {
           margin: 40px 0;

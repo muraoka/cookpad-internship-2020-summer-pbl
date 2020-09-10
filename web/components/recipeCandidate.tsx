@@ -34,6 +34,9 @@ const RecipeCandidate: React.FC<Props> = (props) => {
         </button>
       </div>
       <style jsx>{`
+        div {
+          font-weight: bold;
+        }
         .img {
           text-align: center;
           position: relative;
@@ -45,7 +48,7 @@ const RecipeCandidate: React.FC<Props> = (props) => {
           left: 5px;
           padding: 8px;
           background: #fff;
-          border: 2px solid;
+          border: 3px solid;
           border-radius: 100px;
         }
         img {
@@ -54,7 +57,6 @@ const RecipeCandidate: React.FC<Props> = (props) => {
         }
         p {
           font-size: 20px;
-          font-weight: bold;
         }
         .btns {
           margin: 20px 0 0 0;
@@ -62,7 +64,6 @@ const RecipeCandidate: React.FC<Props> = (props) => {
         .btn-which {
           display: flex;
           justify-content: space-around;
-          font-weight: bold;
           margin-bottom: 20px;
           color: white;
         }
@@ -78,8 +79,7 @@ const RecipeCandidate: React.FC<Props> = (props) => {
           background: #ff9933;
         }
         .btn-done {
-          background: #c0c0c0;
-
+          border: 3px solid;
           font-size: 25px;
         }
       `}</style>
