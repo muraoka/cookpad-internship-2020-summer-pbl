@@ -1,9 +1,11 @@
 import React from "react";
+import Header from "../components/header";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <div>{children}</div>
+    <div>
+      <Header />
+      {children}
       <style jsx>{`
         div {
           margin: 1rem auto;
@@ -11,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           max-width: 400px;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
