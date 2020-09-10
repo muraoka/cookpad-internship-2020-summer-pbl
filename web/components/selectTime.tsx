@@ -4,9 +4,10 @@ import { TimeContext } from "../contexts/TimeContext";
 type Props = { fixTime: React.Dispatch<React.SetStateAction<boolean>> };
 
 const SelectTime: React.FC<Props> = (props) => {
-  const { setTime } = useContext(TimeContext);
+  const { setTime, setInitialTime } = useContext(TimeContext);
   const selectTime = (time: number) => {
     setTime(time);
+    setInitialTime(time);
     props.fixTime(true);
   };
 

@@ -29,7 +29,7 @@ function buildQuery(time_max: number, excludes?: number[]): string {
 function Pick() {
   const router = useRouter();
   const { recipes, addRecipe } = useContext(RecipesContext);
-  const { time, setTime } = useContext(TimeContext);
+  const { time, initialTime, setTime } = useContext(TimeContext);
   const [index, setIndex] = useState(0);
   const [excludes, setExcludes] = useState<number[]>([]);
   const [recipeCandidates, setRecipeCandidates] = useState<Recipe[]>([]);
@@ -77,7 +77,9 @@ function Pick() {
   return (
     <>
       <div>指定済:{recipes ? recipes.map((r) => `${r.title} `) : ""}</div>
-      <div>あと{time}分</div>
+      <div>
+        あと{time}/{initialTime}分
+      </div>
       <div>
         <img src={recipeCandidates[index]?.img_url} />
       </div>
