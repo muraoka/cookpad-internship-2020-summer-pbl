@@ -36,7 +36,9 @@ function Shokuzais() {
       <div>必要な食材</div>
       <div>
         {shokuzais.map((s) => (
-          <div key={s.id}>{`${s.name}: ${s.count}`}</div>
+          <div key={s.id}>
+            {s.name}: {s.count + s.unit}
+          </div>
         ))}
       </div>
       <button onClick={() => router.push("/recipes")}>レシピを見る</button>
