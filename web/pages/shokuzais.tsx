@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { RecipesContext } from "../contexts/RecipesContext";
 import { Shokuzai, ShokuzaiResponse } from "../interfaces/shokuzai";
 import { Recipe } from "../interfaces/recipe";
@@ -20,7 +20,6 @@ async function fetchShokuzais(recipes: Recipe[]): Promise<ShokuzaiResponse> {
 }
 
 function Shokuzais() {
-  const router = useRouter();
   const { recipes } = useContext(RecipesContext);
   const [shokuzais, setShokuzais] = useState<Shokuzai[]>([]);
 
@@ -43,7 +42,9 @@ function Shokuzais() {
           <ShokuzaiWithBox shokuzai={s} key={s.id} />
         ))}
       </div>
-      <button onClick={() => router.push("/recipes")}>レシピを見る</button>
+      <Link href="/recipes">
+        <button>レシピを見る</button>
+      </Link>
       <style jsx>{`
         div {
           text-align: center;
