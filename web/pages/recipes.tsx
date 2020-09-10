@@ -1,24 +1,35 @@
 import React, { useContext } from "react";
 import { RecipesContext } from "../contexts/RecipesContext";
+import { TimeContext } from "../contexts/TimeContext";
+import RecipeDetails from "../components/recipeDetails";
 
 function Recipes() {
   const { recipes } = useContext(RecipesContext);
+  const { initialTime, time } = useContext(TimeContext);
+  const cookingTime = initialTime - time;
+
+  // TODO: 直接 /recipes　にアクセスしたときのハンドリング
+  if (!recipes.length) {
+    return <></>;
+  }
 
   return (
-    <>
-      <div>今日の献立</div>
+    <div>
+      <p>{cookingTime}分で作る今日の献立</p>
       {recipes.map((r) => (
-        <div key={r.id}>
-          <div>
-            <img src={r.img_url} />
-            {r.title}
-            <a href={`https://cookpad.com/recipe/${r.cookpad_recipe_id}`}>
-              レシピを見る
-            </a>
-          </div>
-        </div>
+        <RecipeDetails key={r.id} recipe={r} />
       ))}
-    </>
+      <style jsx>{`
+        div {
+          text-align: center;
+        }
+        p {
+          font-size: 30px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+      `}</style>
+    </div>
   );
 }
 

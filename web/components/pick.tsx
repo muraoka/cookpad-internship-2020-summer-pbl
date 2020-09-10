@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { Recipe, RecipesResponse } from "../interfaces/recipe";
 import { TimeContext } from "../contexts/TimeContext";
 import { RecipesContext } from "../contexts/RecipesContext";
+import FixedRecipes from "../components/fixedRecipes";
+import RecipeCandidate from "../components/recipeCandidate";
 
 async function fetchRecipes(
   time_max: number,
@@ -28,8 +30,8 @@ function buildQuery(time_max: number, excludes?: number[]): string {
 
 function Pick() {
   const router = useRouter();
-  const { recipes, addRecipe } = useContext(RecipesContext);
-  const { time, setTime } = useContext(TimeContext);
+  const { recipes, setRecipes } = useContext(RecipesContext);
+  const { time, initialTime, setTime } = useContext(TimeContext);
   const [index, setIndex] = useState(0);
   const [excludes, setExcludes] = useState<number[]>([]);
   const [recipeCandidates, setRecipeCandidates] = useState<Recipe[]>([]);
@@ -42,6 +44,12 @@ function Pick() {
 
     setCandidates();
   }, [time]);
+
+  const addRecipe = (recipe: Recipe) => {
+    const newRecipes = recipes;
+    newRecipes.push(recipe);
+    setRecipes(newRecipes);
+  };
 
   function cook(recipeCandidate: Recipe) {
     addRecipe(recipeCandidate);
@@ -72,22 +80,30 @@ function Pick() {
     }
   }
 
-  if (!recipeCandidates) return <div>レシピが見つかりませんでした</div>;
+  if (!recipeCandidates) return <></>;
 
   return (
-    <>
-      <div>指定済:{recipes ? recipes.map((r) => `${r.title} `) : ""}</div>
-      <div>あと{time}分</div>
-      <div>
-        <img src={recipeCandidates[index]?.img_url} />
-      </div>
-      <div>
-        {recipeCandidates[index]?.title}: {recipeCandidates[index]?.time}分
-      </div>
-      <button onClick={() => nope(recipeCandidates[index])}>NOPE</button>
-      <button onClick={() => cook(recipeCandidates[index])}>COOK</button>
-      <button onClick={() => done()}>DONE</button>
-    </>
+    <div>
+      <FixedRecipes recipes={recipes} />
+      <p>
+        残り{time}/{initialTime}分
+      </p>
+      <RecipeCandidate
+        recipe={recipeCandidates[index]}
+        nope={nope}
+        cook={cook}
+        done={done}
+      />
+      <style jsx>{`
+        div {
+          text-align: center;
+        }
+        p {
+          font-size: 24px;
+          font-weight: bold;
+        }
+      `}</style>
+    </div>
   );
 }
 

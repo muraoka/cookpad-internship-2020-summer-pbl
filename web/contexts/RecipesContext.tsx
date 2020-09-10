@@ -1,26 +1,21 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useState } from "react";
 import { Recipe } from "../interfaces/recipe";
 
 type RecipesContextType = {
   recipes: Recipe[];
-  addRecipe: React.Dispatch<Recipe>;
+  setRecipes: React.Dispatch<React.SetStateAction<Recipe[]>>;
 };
 
 export const RecipesContext = createContext<RecipesContextType>({
   recipes: [],
-  addRecipe: () => {},
+  setRecipes: () => {},
 });
 
-function reducer(state: Recipe[], action: Recipe) {
-  state.push(action);
-  return state;
-}
-
 export const RecipesContextProvider = ({ children }: any) => {
-  const [recipes, addRecipe] = useReducer(reducer, []);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   return (
-    <RecipesContext.Provider value={{ recipes, addRecipe }}>
+    <RecipesContext.Provider value={{ recipes, setRecipes }}>
       {children}
     </RecipesContext.Provider>
   );
