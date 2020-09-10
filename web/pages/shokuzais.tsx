@@ -31,6 +31,20 @@ function Shokuzais() {
     setShokuzaisToState();
   }, []);
 
+  // TODO: ちゃんとハンドリングする
+  if (!shokuzais.length) {
+    return (
+      <>
+        <div className="recipes">
+          <FixedRecipes recipes={recipes} />
+        </div>
+        <style jsx>{`
+      div {
+        text-align: center;
+      `}</style>
+      </>
+    );
+  }
   return (
     <div>
       <div className="recipes">
