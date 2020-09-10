@@ -1,12 +1,15 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { RecipesContextProvider } from "../contexts/RecipesContext";
+import { TimeContextProvider } from "../contexts/TimeContext";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <RecipesContextProvider>
-      <Component {...pageProps} />
-    </RecipesContextProvider>
+    <TimeContextProvider>
+      <RecipesContextProvider>
+        <Component {...pageProps} />
+      </RecipesContextProvider>
+    </TimeContextProvider>
   );
 }
 
