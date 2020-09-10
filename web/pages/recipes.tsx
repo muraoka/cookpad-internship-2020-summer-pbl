@@ -7,7 +7,14 @@ function Recipes() {
   return (
     <>
       <div>今日の献立</div>
-      <div>{recipes.map((r) => `${r.title} `)}</div>
+      {recipes.map((r) => (
+        <div key={r.id}>
+          <div>
+            <img src={r.img_url} />
+            {r.title}
+          </div>
+        </div>
+      ))}
     </>
   );
 }

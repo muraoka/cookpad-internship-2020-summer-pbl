@@ -78,6 +78,9 @@ function Index() {
       <div>指定済:{recipes ? recipes.map((r) => `${r.title} `) : ""}</div>
       <div>あと{time}分</div>
       <div>
+        <img src={recipeCandidates[index]?.img_url} />
+      </div>
+      <div>
         {recipeCandidates[index]?.title}: {recipeCandidates[index]?.time}分
       </div>
       <button onClick={() => nope(recipeCandidates[index])}>NOPE</button>
