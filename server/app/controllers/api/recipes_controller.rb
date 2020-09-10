@@ -5,6 +5,7 @@ class Api::RecipesController < ApplicationController
     recipes = Recipe.all
     recipes = recipes.where(time: ..params[:time_max]) if params[:time_max]
     recipes = recipes.where.not(id: params[:exclude]) if params[:exclude]
+    recipes = recipes.shuffle if params[:rand] == "1"
 
     @recipes = recipes
     render json: @recipes
