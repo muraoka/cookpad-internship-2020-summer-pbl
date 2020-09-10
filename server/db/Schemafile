@@ -1,7 +1,28 @@
-create_table "recipes", force: :cascade do |t|
+create_table "recipes", id: :integer, force: :cascade do |t|
   t.string      "title",      limit: 255, null: false
   t.integer     "time",                   null: false
 
   t.datetime    "created_at",             null: false
   t.datetime    "updated_at",             null: false
 end
+
+create_table "shokuzais", id: :integer, force: :cascade do |t|
+  t.string      "name",       limit: 255, null: false
+  t.string      "unit",       limit: 255, null: false
+
+  t.datetime    "created_at",             null: false
+  t.datetime    "updated_at",             null: false
+end
+
+create_table "recipes_shokuzais", id: :integer, force: :cascade do |t|
+  t.float       "count",                  null: false
+
+  t.integer     "recipe_id",              null: false
+  t.integer     "shokuzai_id",            null: false
+
+  t.datetime    "created_at",             null: false
+  t.datetime    "updated_at",             null: false
+end
+
+add_foreign_key "recipes_shokuzais", "recipes", name: "recipes_shokuzais_recipes_fk"
+add_foreign_key "recipes_shokuzais", "shokuzais", name: "recipes_shokuzais_shokuzais_fk"

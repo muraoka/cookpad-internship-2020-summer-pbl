@@ -17,7 +17,9 @@ async function fetchRecipes(
 function buildQuery(time_max: number, excludes?: number[]): string {
   let query = `?time_max=${time_max}&rand=1`;
   if (excludes) {
-    query += excludes.map((e) => `&exclude[]=${e}`);
+    excludes.forEach((e) => {
+      query += `&exclude[]=${e}`;
+    });
   }
 
   return query;
@@ -44,7 +46,7 @@ function Index() {
     addRecipe(recipeCandidate);
     const nextTime = time - recipeCandidate.time;
     if (nextTime <= 0) {
-      router.push("/recipes");
+      router.push("/shokuzais");
     }
 
     const newExcludes = excludes;
@@ -65,7 +67,7 @@ function Index() {
     if (!recipes.length) {
       window.alert("レシピを選んでください");
     } else {
-      router.push("/recipes");
+      router.push("/shokuzais");
     }
   }
 
