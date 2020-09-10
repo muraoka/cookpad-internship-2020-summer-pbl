@@ -12,16 +12,40 @@ const SelectTime: React.FC<Props> = (props) => {
   };
 
   return (
-    <>
-      <div>何分で作る?</div>
-      {[15, 30, 45].map((t) => {
-        return (
-          <button key={t} onClick={() => selectTime(t)}>
-            {t}分
-          </button>
-        );
-      })}
-    </>
+    <div>
+      <p>何分で作る?</p>
+      <div className="buttons">
+        {[15, 30, 45].map((t) => {
+          return (
+            <button key={t} onClick={() => selectTime(t)}>
+              {t}分
+            </button>
+          );
+        })}
+      </div>
+      <style jsx>{`
+        div {
+          text-align: center;
+        }
+        p {
+          font-size: 30px;
+          font-weight: bold;
+        }
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        button {
+          background-color: #ff9933;
+          font-size: 40px;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          margin: 30px 0 0 0;
+        }
+      `}</style>
+    </div>
   );
 };
 
