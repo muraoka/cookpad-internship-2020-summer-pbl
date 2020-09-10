@@ -1,9 +1,31 @@
 import React from "react";
 import { Recipe } from "../interfaces/recipe";
+import Recipes from "../pages/recipes";
 
 type Props = { recipes: Recipe[] };
 
 const FixedRecipes: React.FC<Props> = (props) => {
+  if (!props.recipes.length) {
+    return (
+      <div className="wrap">
+        <div className="square">?</div>
+        <style jsx>{`
+          .wrap {
+            height: 90px;
+            margin-bottom: 10px;
+          }
+          .square {
+            width: 70px;
+            height: 70px;
+            font-size: 50px;
+            border: 2px dotted;
+            border-radius: 50%;
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   return (
     <div className="wrap">
       {props.recipes.map((r) => (
