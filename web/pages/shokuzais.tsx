@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { RecipesContext } from "../contexts/RecipesContext";
 import { Shokuzai, ShokuzaiResponse } from "../interfaces/shokuzai";
 import { Recipe } from "../interfaces/recipe";
+import FixedRecipes from "../components/fixedRecipes";
 import ShokuzaiWithBox from "../components/shokuzaiWithBox";
 
 async function fetchShokuzais(recipes: Recipe[]): Promise<ShokuzaiResponse> {
@@ -33,6 +34,9 @@ function Shokuzais() {
 
   return (
     <div>
+      <div className="recipes">
+        <FixedRecipes recipes={recipes} />
+      </div>
       <p>必要な食材</p>
       <div className="shokuzais">
         {shokuzais.map((s) => (
@@ -43,6 +47,9 @@ function Shokuzais() {
       <style jsx>{`
         div {
           text-align: center;
+        }
+        .recipes {
+          margin-bottom: 20px;
         }
         .shokuzais {
           margin-bottom: 20px;
