@@ -15,7 +15,7 @@ async function fetchRecipes(
 }
 
 function buildQuery(time_max: number, excludes?: number[]): string {
-  let query = `?time_max=${time_max}`;
+  let query = `?time_max=${time_max}&rand=1`;
   if (excludes) {
     query += excludes.map((e) => `&exclude[]=${e}`);
   }
