@@ -12,6 +12,9 @@ function Recipes() {
           <div>
             <img src={r.img_url} />
             {r.title}
+            <a href={`https://cookpad.com/recipe/${r.cookpad_recipe_id}`}>
+              レシピを見る
+            </a>
           </div>
         </div>
       ))}
