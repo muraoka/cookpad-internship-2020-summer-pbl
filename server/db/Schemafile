@@ -8,17 +8,17 @@ end
 
 create_table "shokuzais", id: :integer, force: :cascade do |t|
   t.string      "name",       limit: 255, null: false
+  t.string      "unit",       limit: 255, null: false
 
   t.datetime    "created_at",             null: false
   t.datetime    "updated_at",             null: false
 end
 
 create_table "recipes_shokuzais", id: :integer, force: :cascade do |t|
-# NOTE: 妥協. 単位も合わせて保持する ex. "4個"
-  t.string      "count",      limit: 255, null: false
+  t.float       "count",                  null: false
 
   t.integer     "recipe_id",              null: false
-  t.integer     "shokuzai_id",              null: false
+  t.integer     "shokuzai_id",            null: false
 
   t.datetime    "created_at",             null: false
   t.datetime    "updated_at",             null: false
