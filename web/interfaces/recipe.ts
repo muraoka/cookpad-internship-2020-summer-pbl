@@ -3,6 +3,7 @@ export type Recipe = {
   title: string;
   time: number;
   img_url: string;
+  cookpad_recipe_id: number;
 };
 
 export type RecipesResponse = Recipe[];
