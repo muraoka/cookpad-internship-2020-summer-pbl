@@ -20,7 +20,7 @@ const ShokuzaiWithBox: React.FC<Props> = (props) => {
       <style jsx>{`
         div {
           text-align: left;
-          margin: 0 0 0 10vw;
+          margin: 0 0 0 30px;
         }
         p {
           font-size: 20px;

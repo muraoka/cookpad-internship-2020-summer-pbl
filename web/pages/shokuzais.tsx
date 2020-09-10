@@ -37,7 +37,7 @@ function Shokuzais() {
       <div className="recipes">
         <FixedRecipes recipes={recipes} />
       </div>
-      <p>必要な食材</p>
+      <p>必要な食材 (1人分)</p>
       <div className="shokuzais">
         {shokuzais.map((s) => (
           <ShokuzaiWithBox shokuzai={s} key={s.id} />
@@ -48,14 +48,11 @@ function Shokuzais() {
         div {
           text-align: center;
         }
-        .recipes {
-          margin-bottom: 20px;
-        }
         .shokuzais {
           margin-bottom: 20px;
         }
         p {
-          font-size: 30px;
+          font-size: 24px;
           font-weight: bold;
           margin-bottom: 20px;
         }
