@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { TimeContext } from "../contexts/TimeContext";
+import { RecipesContext } from "../contexts/RecipesContext";
 
 type Props = { fixTime: React.Dispatch<React.SetStateAction<boolean>> };
 
 const SelectTime: React.FC<Props> = (props) => {
   const { setTime, setInitialTime } = useContext(TimeContext);
-  const selectTime = (time: number) => {
+  const { setRecipes } = useContext(RecipesContext);
+  const handle = (time: number) => {
     setTime(time);
     setInitialTime(time);
+    setRecipes([]);
     props.fixTime(true);
   };
 
@@ -17,7 +20,7 @@ const SelectTime: React.FC<Props> = (props) => {
       <div className="buttons">
         {[15, 30, 45].map((t) => {
           return (
-            <button key={t} onClick={() => selectTime(t)}>
+            <button key={t} onClick={() => handle(t)}>
               {t}分
             </button>
           );

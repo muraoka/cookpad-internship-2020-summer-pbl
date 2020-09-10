@@ -30,7 +30,7 @@ function buildQuery(time_max: number, excludes?: number[]): string {
 
 function Pick() {
   const router = useRouter();
-  const { recipes, addRecipe } = useContext(RecipesContext);
+  const { recipes, setRecipes } = useContext(RecipesContext);
   const { time, initialTime, setTime } = useContext(TimeContext);
   const [index, setIndex] = useState(0);
   const [excludes, setExcludes] = useState<number[]>([]);
@@ -44,6 +44,12 @@ function Pick() {
 
     setCandidates();
   }, [time]);
+
+  const addRecipe = (recipe: Recipe) => {
+    const newRecipes = recipes;
+    newRecipes.push(recipe);
+    setRecipes(newRecipes);
+  };
 
   function cook(recipeCandidate: Recipe) {
     addRecipe(recipeCandidate);
