@@ -37,8 +37,8 @@ const FixedRecipes: React.FC<Props> = (props) => {
       <style jsx>{`
         .wrap {
           display: flex;
-          height: 90px;
           margin-bottom: 10px;
+          flex-wrap: wrap;
         }
         .img {
           position: relative;
