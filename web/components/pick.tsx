@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import fetch from "node-fetch";
 import { useRouter } from "next/router";
 import { Recipe, RecipesResponse } from "../interfaces/recipe";
+import { TimeContext } from "../contexts/TimeContext";
 import { RecipesContext } from "../contexts/RecipesContext";
 
 async function fetchRecipes(
@@ -28,7 +29,7 @@ function buildQuery(time_max: number, excludes?: number[]): string {
 function Pick() {
   const router = useRouter();
   const { recipes, addRecipe } = useContext(RecipesContext);
-  const [time, setTime] = useState(30);
+  const { time, setTime } = useContext(TimeContext);
   const [index, setIndex] = useState(0);
   const [excludes, setExcludes] = useState<number[]>([]);
   const [recipeCandidates, setRecipeCandidates] = useState<Recipe[]>([]);
