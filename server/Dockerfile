@@ -5,5 +5,5 @@ WORKDIR /app
 COPY ./Gemfile ./Gemfile.lock ./
 RUN bundle install
 
-EXPOSE 8080
-CMD rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0 -p 8080
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT /docker-entrypoint.sh
