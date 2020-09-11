@@ -15,7 +15,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
-  host: localhost
 
 development:
   <<: *default
@@ -54,5 +53,7 @@ test:
 production:
   <<: *default
   database: cpsi_production
-  username: cpsi
-  password: <%= ENV['SERVER_DATABASE_PASSWORD'] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASS"] %>
+  socket: "<%= ENV.fetch("DB_SOCKET_DIR") { '/cloudsql' } %>/<%= ENV["INSTANCE_CONNECTION_NAME"] %>"
+  host: <%= ENV["DB_HOST"] %>
